@@ -1,4 +1,4 @@
-# Sistema de Predicción de Enfermedades - Streamlit + Docker
+# Sistema de Predicción de Enfermedades - Streamlit + Docker 
 
 Este proyecto implementa una aplicación interactiva construida con **Streamlit** para predecir el estado de salud de un paciente a partir de síntomas y datos clínicos básicos. Las posibles salidas del modelo son:
 
