@@ -11,10 +11,10 @@ COPY . /app
 
 # Instalar dependencias
 RUN pip install --upgrade pip \
-    && pip install streamlit pandas
+    && pip install -r requirements.txt
 
 # Exponer el puerto que usa Streamlit
 EXPOSE 8501
 
 # Comando para ejecutar la app
-CMD ["streamlit", "run", "app_prediccion_enfermedades.py", "--server.port=8501", "--server.enableCORS=false"]
+CMD ["streamlit", "run", "app/app_prediccion_enfermedades.py", "--server.port=8501", "--server.enableCORS=false"]

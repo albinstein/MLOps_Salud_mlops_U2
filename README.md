@@ -10,10 +10,13 @@ Este proyecto implementa una aplicación interactiva construida con **Streamlit*
 ## Estructura del Proyecto
 
 ```
-├── app_prediccion_enfermedades.py     # Código principal de la app Streamlit
+MLOps_Salud_mlops_U2/
+├── app/
+│   └── app_prediccion_enfermedades.py # Código principal de la app Streamlit
+├── reports/                           # Generacion de reportes
 ├── Dockerfile                         # Imagen para contenerizar la app
+├── requirements.txt
 ├── .gitignore                         # Exclusión de archivos innecesarios en Git
-├── .dockerignore                      # Exclusión de archivos innecesarios en builds Docker
 ├── README.md                          # Documentación del sistema
 ```
 
