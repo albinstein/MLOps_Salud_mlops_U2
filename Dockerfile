@@ -6,8 +6,9 @@ FROM python:3.10-slim
 # Establece el directorio de trabajo
 WORKDIR /app
 
-# Copiar archivos de la app
-COPY . /app
+# Copiar archivos necesarios
+COPY requirements.txt ./
+COPY app/ ./app/
 
 # Instalar dependencias
 RUN pip install --upgrade pip \
