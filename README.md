@@ -31,8 +31,8 @@ MLOps_Salud_mlops_U2/
 1. **Clona este repositorio o guarda los archivos en una carpeta:**
 
 ```bash
-git clone https://github.com/albinstein/MLOps_Salud.git
-cd MLOps_Salud
+git clone https://github.com/albinstein/MLOps_Salud_mlops_U2.git
+cd MLOps_Salud_mlops_U2
 ```
 
 O si tienes los archivos sueltos, colócalos todos en una misma carpeta.
