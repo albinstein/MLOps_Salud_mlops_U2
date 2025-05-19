@@ -6,6 +6,7 @@ Este proyecto implementa una aplicación interactiva construida con **Streamlit*
 - ENFERMEDAD LEVE
 - ENFERMEDAD AGUDA
 - ENFERMEDAD CRÓNICA
+- ENFERMEDAD TERMINAL
 
 ## Estructura del Proyecto
 

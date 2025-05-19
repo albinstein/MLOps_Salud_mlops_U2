@@ -1,20 +1,18 @@
-# Dockerfile para desplegar la app de Streamlit de predicción de enfermedades
-
 # Imagen base
 FROM python:3.10-slim
 
-# Establece el directorio de trabajo
+# Establecer directorio de trabajo
 WORKDIR /app
 
-# Copiar archivos necesarios
+# Copiar archivos
 COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar código de la app y crear carpeta de reportes
 COPY app/ ./app/
+RUN mkdir -p /app/reports
 
-# Instalar dependencias
-RUN pip install --upgrade pip \
-    && pip install -r requirements.txt
-
-# Exponer el puerto que usa Streamlit
+# Exponer el puerto usado por Streamlit
 EXPOSE 8501
 
 # Comando para ejecutar la app
