@@ -101,7 +101,7 @@ def exportar_pdf(ultimos_registros):
     return BytesIO(pdf_output)
 
 # ---------- INTERFAZ STREAMLIT ----------
-st.title("🩺 Sistema de Predicción de Enfermedades v2.1")
+st.title("🩺 Sistema de Predicción de Enfermedades v2.01")
 st.write("Ingresa los datos clínicos del paciente para evaluar su estado de salud.")
 
 # Entradas
