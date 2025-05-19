@@ -25,7 +25,9 @@ jobs:
           pip install pytest
 
       - name: Ejecutar pruebas
-        run: pytest tests/
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
+          pytest tests/
 
       - name: Comentar inicio en PR
         if: github.event_name == 'pull_request'
@@ -50,29 +52,3 @@ jobs:
               repo: context.repo.repo,
               body: "CI/CD terminado con éxito."
             })
-
-  build-and-push-docker:
-    if: github.event_name == 'push'
-    needs: run-tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout del código
-        uses: actions/checkout@v3
-
-      - name: Iniciar sesión en GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Construir imagen Docker
-        run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/mlops-salud:latest .
-
-      - name: Subir imagen a GitHub Packages
-        run: |
-          docker push ghcr.io/${{ github.repository_owner }}/mlops-salud:latest
-
-          
