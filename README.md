@@ -130,6 +130,27 @@ Repositorio Git principal:
 
 ---
 
+
+---
+
+### Supuestos del Sistema
+
+Para el correcto funcionamiento del pipeline de predicción, se establecen los siguientes supuestos técnicos y operativos:
+
+- Los datos clínicos de entrada están estructurados en formatos compatibles con CSV o JSON.
+- El sistema será utilizado por personal clínico con conocimientos básicos en uso de interfaces web.
+- Los dispositivos donde se ejecuta localmente la solución (vía Docker) tienen al menos:
+  - 4 GB de RAM
+  - 2 núcleos de CPU
+  - Acceso a navegador web moderno
+- Si se ejecuta en red o nube, se cuenta con:
+  - Infraestructura segura y cumplimiento de normativas de protección de datos personales.
+  - Conectividad estable para acceso a endpoints API si se despliega con FastAPI.
+- Los datos utilizados cumplen con criterios éticos y legales para su uso en modelos de aprendizaje automático.
+- El entrenamiento y actualización del modelo es responsabilidad del equipo técnico autorizado, no del personal médico.
+
+
+
 ## Historial de Cambios
 
 Consulta el [CHANGELOG.md](./CHANGELOG.md) para más detalles sobre las versiones y actualizaciones del proyecto.
