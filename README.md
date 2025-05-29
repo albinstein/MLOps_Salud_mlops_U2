@@ -23,7 +23,7 @@ Desafíos clave: desbalance de clases, interpretabilidad y escasez de datos.
 
 #### Diagrama del Pipeline Propuesto
 
-![Pipeline MLOps de Predicción de Enfermedades](./imgs/pipeline-mlops.png)
+![Pipeline MLOps de Predicción de Enfermedades](./imgs/pipeline-mlops.JPG)
 
 ---
 
