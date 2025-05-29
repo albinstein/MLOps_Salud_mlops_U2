@@ -1,6 +1,13 @@
-# Sistema de Predicción de Enfermedades - Streamlit + Docker
+# Pipeline MLOps para Predicción de Enfermedades – v1.0.0
 
-Este proyecto implementa una aplicación interactiva construida con **Streamlit** para predecir el estado de salud de un paciente a partir de síntomas y datos clínicos básicos. Las posibles salidas del modelo son:
+## Caso de Uso
+### Contexto
+Este sistema apoya a profesionales de la salud mediante la predicción del estado clínico de un paciente usando datos clínicos estructurados y síntomas. Integra condiciones comunes y enfermedades huérfanas. El modelo se despliega en una interfaz **Streamlit** contenerizada con **Docker**.
+
+### Definición del Problema
+
+#### Entrenamiento del Modelo
+El modelo realiza clasificación multiclase en cinco estados:
 
 - NO ENFERMO
 - ENFERMEDAD LEVE
@@ -8,94 +15,124 @@ Este proyecto implementa una aplicación interactiva construida con **Streamlit*
 - ENFERMEDAD CRÓNICA
 - ENFERMEDAD TERMINAL
 
-## Estructura del Proyecto
+Desafíos clave: desbalance de clases, interpretabilidad y escasez de datos.
 
-```
-MLOps_Salud_mlops_U2/
-├── app/
-│   └── app_prediccion_enfermedades.py # Código principal de la app Streamlit
-├── reports/                           # Generacion de reportes
-├── Dockerfile                         # Imagen para contenerizar la app
-├── requirements.txt
-├── .gitignore                         # Exclusión de archivos innecesarios en Git
-├── README.md                          # Documentación del sistema
-```
+---
 
-## Requisitos
+### Parte 1: Diseño del Pipeline MLOps
 
-- Tener **Docker** instalado (Windows, Linux o macOS).
-- Tener acceso a línea de comandos (CMD, PowerShell, Terminal).
-- Opcional: Git para clonar el repositorio.
+#### Diagrama del Pipeline Propuesto
 
-## Ejecución con Docker
+![Pipeline MLOps de Predicción de Enfermedades](./imgs/pipeline-mlops.png)
 
-1. **Clona este repositorio o guarda los archivos en una carpeta:**
+---
+
+#### Ingesta de Datos
+- Historias clínicas electrónicas (EHR)
+- Formularios de triaje
+- Bases públicas (MIMIC, Orphanet)
+- Automatización con **Airflow** / **Dagster**
+- Versionado con **DVC** o **LakeFS**
+
+---
+
+#### Procesamiento y Calidad del Dato
+- Imputación de datos faltantes
+- Normalización y codificación
+- Aumento sintético (SMOTE, Focal Loss)
+
+---
+
+#### Entrenamiento del Modelo
+Modelos sugeridos:
+- **XGBoost**, **LightGBM**
+- **MLP**, **TabTransformer**
+
+Validación cruzada estratificada, enfoque few-shot/meta-learning para enfermedades raras.
+
+---
+
+#### Registro y Empaquetado
+- Formatos: `.pkl`, `.joblib`, `.onnx`
+- Contenerización: **Docker**
+- Registro: **MLflow**, **Vertex AI**
+
+---
+
+#### Despliegue
+- API REST con **FastAPI**
+- Interfaz de usuario con **Streamlit**
+- Escenarios: local o Kubernetes
+
+---
+
+#### Monitoreo y Reentrenamiento
+- Herramientas: **Evidently AI**, **Grafana**, **Prometheus**
+- Retraining programado y supervisado
+- CI/CD con **GitHub Actions**, **Jenkins**, **GitLab CI**
+
+---
+
+### Parte 2: Caso Clínico
+
+Un paciente masculino de 30 años con:
+- Temperatura: 39.7 °C
+- PA: 120/80 mmHg
+- FC: 75 lpm
+- FR: 18 rpm
+- Síntomas: náuseas y fatiga
+
+El sistema evalúa esta información y predice el estado clínico.
+
+---
+
+### Parte 3: Guía de Ejecución
+
+#### Requisitos
+- Docker instalado
+- Opcional: Git
+
+#### Pasos para ejecutar
 
 ```bash
 git clone https://github.com/albinstein/MLOps_Salud_mlops_U2.git
 cd MLOps_Salud_mlops_U2
-```
-
-O si tienes los archivos sueltos, colócalos todos en una misma carpeta.
-
-### 2. Verifica que tengas los siguientes archivos:
-
-- `app_prediccion_enfermedades.py`
-- `Dockerfile` (con D mayúscula)
-- `.gitignore`
-- `README.md`
-
----
-
-### 3. Construir la imagen Docker
-
-```bash
 docker build -t prediccion-enfermedades .
-```
-
----
-
-### 4. Ejecutar el contenedor
-
-```bash
 docker run -p 8501:8501 prediccion-enfermedades
 ```
 
-Esto levantará el servidor Streamlit en el puerto 8501.
+Abre tu navegador en: [http://localhost:8501](http://localhost:8501)
 
 ---
 
-### 5. Abrir la aplicación en el navegador
+### Estructura del Proyecto
 
 ```
-http://localhost:8501
+MLOps_Salud_mlops_U2/
+├── app/                       # Código Streamlit
+│   └── app_prediccion_enfermedades.py
+├── reports/                   # Reportes
+├── Dockerfile                 # Imagen contenedor
+├── requirements.txt           # Dependencias
+├── .gitignore
+├── README.md
 ```
 
 ---
 
-## ¿Qué hace esta aplicación?
+### Repositorio
 
-Recibe:
-- Edad, sexo, temperatura, presión arterial, frecuencia cardiaca y síntomas.
-
-Devuelve:
-- Un estado clínico estimado basado en reglas médicas programadas o un modelo predictivo (próximamente integrable).
+Repositorio Git principal:  
+[https://github.com/albinstein/MLOps_Salud.git](https://github.com/albinstein/MLOps_Salud.git)
 
 ---
 
-## Notas técnicas
-
-- La app está contenida en un entorno ligero basado en `python:3.10-slim`.
-- Usa solo `streamlit`, `pandas` y `numpy` como dependencias.
 
 ---
+
+## Historial de Cambios
+
+Consulta el [CHANGELOG.md](./CHANGELOG.md) para más detalles sobre las versiones y actualizaciones del proyecto.
+
 
 Desarrollado por Albin Rivera – 2025
-
-
-
-
-
-
-
-
